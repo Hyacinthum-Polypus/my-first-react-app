@@ -1,31 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 
-function ListItem(props) {
-  return <li>{props.animal}</li>
-}
-
-function List(props) {
-  return (
-    <ul>
-      {props.animals.map((animal) => {
-        return <ListItem key={animal} animal={animal} />;
-      })}
-    </ul>
-  )
-}
+const COLORS = ["pink", "green", "blue", "yellow", "purple"];
 
 function App() {
-  const animals = ["Lion", "Cow", "Snake", "Lizard"];
+  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+
+  const onButtonClick = (color) => () => {
+    setBackgroundColor(color);
+  };
 
   return (
-    <div>
-      <h1>Animals: </h1>
-      <List animals={animals}></List>
+    <div
+      className="App"
+      style={{
+        backgroundColor,
+      }}
+    >
+      {COLORS.map((color) => (
+        <button
+          type="button"
+          key={color}
+          onClick={onButtonClick(color)}
+          className={backgroundColor === color ? "selected" : ""}
+        >
+          {color}
+        </button>
+      ))}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
