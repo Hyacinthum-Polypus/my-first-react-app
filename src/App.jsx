@@ -5,8 +5,11 @@ const COLORS = ["pink", "green", "blue", "yellow", "purple"];
 
 function App() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+  const [countNumber, setCounterNumber] = useState(0);
 
   const onButtonClick = (color) => () => {
+    if(backgroundColor !== color)
+      setCounterNumber(countNumber+1);
     setBackgroundColor(color);
   };
 
@@ -27,6 +30,8 @@ function App() {
           {color}
         </button>
       ))}
+
+      <h1>{countNumber}</h1>
     </div>
   );
 }
