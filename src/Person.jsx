@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function Person() {
-    const [person, setPerson] = useState({ name: "John", age: 100 });
+    const [person, setPerson] = useState({ fname: "John", lname: "Doe", age: 100 });
   
     const handleIncreaseAge = () => {
       console.log("in handleIncreaseAge (before setPerson call): ", person);
@@ -16,10 +16,22 @@ function Person() {
   
     return (
       <>
-        <h1>{person.name}</h1>
+        <h1>{person.fname + " " + person.lname}</h1>
         <h2>{person.age}</h2>
         <button onClick={handleIncreaseAge}>Increase age</button>
-      </>
+        <div>
+            <input
+            type="text"
+            value={person.fname}
+            onChange={event => setPerson({...person, "fname": event.target.value})}
+            />
+            <input
+            type="text"
+            value={person.lname}
+            onChange={event => setPerson({...person, "lname": event.target.value})}
+            />
+        </div>
+        </>
     );
 }
 
